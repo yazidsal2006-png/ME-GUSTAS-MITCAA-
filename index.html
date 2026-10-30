@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol de Amor Animado</title>
+    <!-- Autoría y derechos -->
+    <meta name="author" content="Zero">
+    <meta name="copyright" content="Zero - Código libre no comercial">
+    <meta name="description" content="Árbol de Amor Animado: una sorpresa interactiva y romántica para dedicar a tu pareja o ser querido. Código libre para uso personal, educativo o de inspiración.">
+    <meta name="keywords" content="amor, sorpresa, romántico, dedicatoria, animación, árbol, corazones, pareja, aniversario, regalo digital">
+    <meta name="robots" content="index, follow">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/style.mobile.css" media="only screen and (max-width: 600px)">
+    <style>
+        .tree-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            z-index: 2;
+        }
+        .animated-heart {
+            transform-origin: center;
+            animation: beat 1s infinite;
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(0.95); }
+            60% { transform: scale(1.08); }
+            80% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- PANTALLA DE BIENVENIDA (Esto faltaba para que aparezca el botón) -->
+    <div id="welcome-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #e9d5d5, #da7575); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; transition: opacity 0.8s ease;">
+        <h1 style="font-size: 2rem; margin-bottom: 10px; font-weight: 400; letter-spacing: 1px;">💗Para Tú💗</h1>
+        <p style="font-size: 1.1rem; color: #000000; margin-bottom: 30px; font-style: italic;">✨🎁Por que haces que el Presente sea un Regalo🎁✨</p>
+        <button id="start-btn" style="background: #ff4757; color: white; border: none; padding: 14px 32px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); transition: transform 0.2s, background 0.2s;">
+            ❤️PPÑA❤️
+        </button>
+    </div>
+
+    <!-- Tus elementos originales de la página -->
+    <div id="floating-objects"></div>
+    <div class="dedication-text" id="dedication-text">
+        <div class="signature" id="signature"></div>
+    </div>
+    <div class="countdown" id="countdown"></div>
+    <div class="tree-container" id="tree-container"></div>
+    <audio src="Music/Mi Corazon Late.mp3" id="bg-music" preload="auto"></audio>
+    <script src="Js/script.js"></script>
+
+    <!-- SCRIPT PARA ACTIVAR LA MAGIA Y QUITAR LA PANTALLA -->
+    <script>
+        document.getElementById('start-btn').addEventListener('click', function() {
+            var welcomeScreen = document.getElementById('welcome-screen');
+            var audio = document.getElementById('bg-music');
+            
+            // 1. Reproducir música
+            if (audio) {
+                audio.play().catch(function(error) {
+                    console.log("Audio play prevented", error);
+                });
+            }
+
+            // 2. Disparar la función principal de tu script.js para que empiece el árbol y el texto
+            if (typeof iniciarMagia === 'function') {
+                iniciarMagia();
+            }
+            
+            // 3. Desvanecer y quitar la pantalla de bienvenida
+            welcomeScreen.style.opacity = '0';
+            setTimeout(function() {
+                welcomeScreen.style.display = 'none';
+            }, 800);
+        });
+    </script>
+</body>
+</html>
